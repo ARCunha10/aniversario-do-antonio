@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aniversário do Antonio</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 { color: #333; }
+    .question-box {
+      background-color: white;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .hidden { display: none; }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .result { font-weight: bold; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Aniversário do Antonio 🎉</h1>
+  <p>De 20 a 30 de maio, responda 1 pergunta por dia. Ao final, você desbloqueará seu presente!</p>
+  <div id="questions"></div>
+  <script>
+    const today = new Date();
+    const currentDate = today.getDate();
+    const startDay = 20;
+    const answers = {
+      20: 'B',
+      21: 'A',
+      22: 'B',
+      23: 'B',
+      24: 'B',
+      25: 'B',
+      26: 'A',
+      27: 'O pente da maquininha de barbear caiu e raspou a barba sem querer',
+      28: 'C',
+      29: 'B'
+    };
+    const questions = {
+      20: {
+        q: 'Qual é o sentido da palavra inglesa “resilient”?',
+        options: ['A) Frágil', 'B) Adaptável', 'C) Inatacável', 'D) Esperto']
+      },
+      21: {
+        q: 'Baseado no pé de Paulo Cesar Fuscaldo Juliano, qual tipo de pé ele tem?',
+        options: ['A) Pé romano', 'B) Pé egípcio', 'C) Pé germânico', 'D) Pé grego']
+      },
+      22: {
+        q: 'De qual música do Red Hot Chili Peppers é este trecho? “You don’t know my mind / You don’t know my kind”',
+        options: ['A) Dani California', 'B) Dark Necessities', 'C) By the Way', 'D) Can’t Stop']
+      },
+      23: {
+        q: 'Na música “O Rei Chegou”, de Jorge Ben Jor, quem é o Príncipe Shagueran?',
+        options: ['A) Guerreiro viking', 'B) Herdeiro de Bagdá', 'C) Personagem bíblico', 'D) Mensageiro de Dom Pedro']
+      },
+      24: {
+        q: 'Qual é a principal diferença entre curry indiano e tailandês?',
+        options: ['A) Indiano usa leite de coco', 'B) Indiano usa especiarias secas, tailandês usa pastas']
+      },
+      25: {
+        q: 'Qual prato NÃO foi criado por Clarissa e Paulo?',
+        options: ['A) Rudolf Big Darling', 'B) Beto Carreiro', 'C) Romildo', 'D) Felicitá', 'E) Zé da Colher']
+      },
+      26: {
+        q: 'Qual é o verdadeiro nome do Mandaloriano?',
+        options: ['A) Din Djarin', 'B) Boba Fett', 'C) Kylo Ren', 'D) Jango Fett']
+      },
+      27: {
+        q: 'Por que Paulo adotou o bigode em Dez/2024?',
+        type: 'text'
+      },
+      28: {
+        q: 'Paulo se considera minimalista. Mas se pudesse teria mais:',
+        options: ['A) Velas e panos de prato', 'B) Cuecas e shorts azuis', 'C) Lanternas e temperos diferentes', 'D) Tênis e facas', 'E) Plantas e eletros']
+      },
+      29: {
+        q: 'Carbonara para 10 pessoas: quantos gramas?',
+        options: ['A) 360g/270g', 'B) 400g/300g', 'C) 300g/250g', 'D) 450g/350g']
+      },
+      30: {
+        q: 'Parabéns! Você completou tudo. Clique abaixo para ver seu presente 🎁',
+        final: true
+      }
+    };
+
+    const container = document.getElementById('questions');
+
+    for (let day = startDay; day <= 30; day++) {
+      if (day > currentDate) break;
+
+      const qData = questions[day];
+      const box = document.createElement('div');
+      box.className = 'question-box';
+
+      if (qData.final) {
+        box.innerHTML = `<p><strong>${qData.q}</strong></p><button onclick="alert('Link do vídeo ainda será adicionado!')">Ver vídeo</button>`;
+      } else {
+        box.innerHTML = `<p><strong>${day}/05:</strong> ${qData.q}</p>`;
+
+        if (qData.type === 'text') {
+          box.innerHTML += `<input type="text" id="ans-${day}" /><button onclick="checkText(${day})">Responder</button><p class="result" id="res-${day}"></p>`;
+        } else {
+          qData.options.forEach((opt, i) => {
+            box.innerHTML += `<label><input type="radio" name="q${day}" value="${opt[0]}" /> ${opt}</label><br>`;
+          });
+          box.innerHTML += `<button onclick="check(${day})">Responder</button><p class="result" id="res-${day}"></p>`;
+        }
+      }
+
+      container.appendChild(box);
+    }
+
+    function check(day) {
+      const selected = document.querySelector(`input[name='q${day}']:checked`);
+      const result = document.getElementById(`res-${day}`);
+      if (!selected) return result.textContent = 'Escolha uma opção';
+      result.textContent = selected.value === answers[day] ? '✅ Correto!' : '❌ Resposta incorreta';
+    }
+
+    function checkText(day) {
+      const input = document.getElementById(`ans-${day}`);
+      const result = document.getElementById(`res-${day}`);
+      if (!input.value) return result.textContent = 'Digite uma resposta';
+      result.textContent = input.value.trim().toLowerCase() === answers[day].toLowerCase() ? '✅ Correto!' : '❌ Resposta incorreta';
+    }
+  </script>
+</body>
+</html>
