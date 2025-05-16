@@ -1,89 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Aniversário do Antonio</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
       padding: 20px;
-      background: #f5f5f5;
+      background: #f9f9f9;
       color: #333;
-      max-width: 600px;
-      margin: auto;
     }
-
     h1 {
-      font-size: 1.8rem;
       text-align: center;
-      margin-bottom: 10px;
     }
-
-    .intro {
-      text-align: center;
-      margin-bottom: 24px;
-      font-size: 1rem;
-    }
-
     .question-box {
-      background: white;
+      background: #fff;
       padding: 16px;
-      margin-bottom: 16px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
     }
-
-    .question-box.hidden {
+    .hidden {
       display: none;
     }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    input[type="radio"] {
-      margin-right: 8px;
-    }
-
-    button {
-      display: block;
-      margin-top: 12px;
-      padding: 10px 16px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
     .result {
-      margin-top: 10px;
+      margin-top: 8px;
       font-weight: bold;
-    }
-
-    .final-link {
-      background: #e0ffe0;
-      padding: 16px;
-      text-align: center;
-      border: 2px dashed #4CAF50;
-      border-radius: 10px;
-      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-
-  <h1>🎉🎉 Aniversário do Antonio 🎉🎉</h1>
+  <h1>Aniversário do Antonio 🎉</h1>
   <br>
   <p><strong>ATENÇÃO Antônio César!</strong></p>
   <br>
@@ -94,8 +43,6 @@
   <h1><strong>Boa sorte!</strong></h1>
   <br>
   <p>Instruções: de 20 a 30 de maio, responda 1 pergunta por dia. Ao final, você desbloqueará seu presente!</p>
-  <br>
-  <br>
 
   <div id="quiz-container"></div>
   <div id="final-box" class="question-box hidden">
@@ -106,8 +53,8 @@
   <script>
     // Obtém o dia atual apenas se estivermos no mês de maio (mês 4 em JavaScript)
     const today = new Date();
-    // const currentDate = 30; // comment line 109, uncomment line 110 and 233
-    const currentDay = today.getMonth() === 4 ? today.getDate() : 0;
+    const currentDate = 30; // comment line 56, uncomment line 57 and 180
+    // const currentDay = today.getMonth() === 4 ? today.getDate() : 0;
 
     const questions = {
       20: {
@@ -136,34 +83,34 @@
         text: 'De qual música do Red Hot Chili Peppers é este trecho? “You don’t know my mind / You don’t know my kind”',
         options: [
             'A) Dani California',
-            'B) By the Way',
-            'C) Dark Necessities',
+            'B) Dark Necessities',
+            'C) By the Way',
             'D) Can’t Stop',
             'E) Scar Tissue'
         ],
-        answer: 'C'
+        answer: 'B'
       },
       23: {
         text: 'Na música “O Rei Chegou”, de Jorge Ben Jor, quem é o Príncipe Shagueran?',
         options: [
           'A) Um guerreiro viking do norte da Europa',
-          'B) Um personagem da Bíblia que virou samba',
-          'C) Um mensageiro do samba enviado por Dom Pedro',
-          'D) Um mágico africano que domina a arte do candomblé',
-          'E) Um herdeiro do trono de Bagdá, conhecido por sua sabedoria e coragem'
+          'B) Um herdeiro do trono de Bagdá, conhecido por sua sabedoria e coragem',
+          'C) Um personagem da Bíblia que virou samba',
+          'D) Um mensageiro do samba enviado por Dom Pedro',
+          'E) Um mágico africano que domina a arte do candomblé'
         ],
-        answer: 'E'
+        answer: 'B'
       },
       24: {
         text: 'Qual é a principal diferença entre um curry indiano e um curry tailandês em termos de base aromática?',
         options: [
           'A) O curry indiano usa leite de coco, enquanto o tailandês é feito apenas com especiarias secas',
-          'B) O curry tailandês é sempre servido seco, enquanto o curry indiano é sempre líquido',
-          'C) O curry indiano leva molho de peixe como base, enquanto o tailandês utiliza iogurte',
-          'D) O curry indiano é baseado em especiarias secas, enquanto o tailandês usa pastas frescas com ervas aromáticas',
-          'E) O curry tailandês é feito com farinha de trigo para engrossar, enquanto o indiano usa amido de milho'
+          'B) O curry indiano é baseado em especiarias secas, enquanto o tailandês usa pastas frescas com ervas aromáticas',
+          'C) O curry tailandês é sempre servido seco, enquanto o curry indiano é sempre líquido',
+	      'D) O curry indiano leva molho de peixe como base, enquanto o tailandês utiliza iogurte',
+	      'E) O curry tailandês é feito com farinha de trigo para engrossar, enquanto o indiano usa amido de milho'
         ],
-        answer: 'D'
+        answer: 'B'
       },
       25: {
         text: 'Qual dos pratos abaixo não faz parte das criações de Clarissa e Paulo?',
@@ -179,13 +126,13 @@
       26: {
         text: 'Qual é o verdadeiro nome do personagem conhecido como “O Mandaloriano”?',
         options: [
-            'A) Boba Fett',
-            'B) Kylo Ren',
-            'C) Din Djarin',
+            'A) Din Djarin',
+            'B) Boba Fett',
+            'C) Kylo Ren',
             'D) Jango Fett',
             'E) Paz Vizsla'
         ],
-        answer: 'C'
+        answer: 'A'
       },
       27: {
         text: 'Em dezembro de 2024, Paulo adotou um estilo novo. O famoso “Bigode bom moço”. Qual foi o motivo?',
@@ -213,12 +160,12 @@
         text: 'Se uma receita de carbonara para 3 pessoas usa 120g de guanciale e 90g de queijo pecorino romano, quantos gramas de cada ingrediente seriam necessários para servir 10 pessoas mantendo as proporções?',
         options: [
           'A) 360g de guanciale e 270g de pecorino',
-          'B) 300g de guanciale e 250g de pecorino',
-          'C) 450g de guanciale e 350g de pecorino',
-          'D) 400g de guanciale e 300g de pecorino',
+          'B) 400g de guanciale e 300g de pecorino',
+          'C) 300g de guanciale e 250g de pecorino',
+          'D) 450g de guanciale e 350g de pecorino',
           'E) 500g de guanciale e 400g de pecorino'
         ],
-        answer: 'D'
+        answer: 'B'
       }
     };
 
@@ -230,7 +177,7 @@
       const qData = questions[day];
       const box = document.createElement('div');
       box.className = 'question-box';
-      if (day > currentDay || currentDay < 20) box.classList.add('hidden');
+    //   if (day > currentDay || currentDay < 20) box.classList.add('hidden');
       box.innerHTML = `<strong>${day}/05:</strong> ${qData.text}<br><br>`;
       qData.options.forEach((opt, i) => {
         box.innerHTML += `<label><input type="radio" name="q${day}" value="${opt[0]}" /> ${opt}</label><br>`;
