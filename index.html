@@ -110,8 +110,8 @@
   <script>
     // Obtém o dia atual apenas se estivermos no mês de maio (mês 4 em JavaScript)
     const today = new Date();
-    // const currentDate = 30; // comment line 109, uncomment line 110 and 233
-    const currentDay = today.getMonth() === 4 ? today.getDate() : 0;
+    const currentDate = 30; // comment line 109, uncomment line 110 and 233
+    // const currentDay = today.getMonth() === 4 ? today.getDate() : 0;
 
     const questions = {
       20: {
@@ -234,7 +234,7 @@
       const qData = questions[day];
       const box = document.createElement('div');
       box.className = 'question-box';
-      if (day > currentDay || currentDay < 20) box.classList.add('hidden');
+      // if (day > currentDay || currentDay < 20) box.classList.add('hidden');
       box.innerHTML = `<strong>${day}/05:</strong> ${qData.text}<br><br>`;
       qData.options.forEach((opt, i) => {
         box.innerHTML += `<label><input type="radio" name="q${day}" value="${opt[0]}" /> ${opt}</label><br>`;
